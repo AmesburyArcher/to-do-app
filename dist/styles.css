@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@400;700&display=swap');
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Greys 1 (dark) to 6 (light) */
+    --grey-one: hsl(0, 0%, 25%);
+    --grey-two: hsl(0, 0%, 35%);
+    --grey-three: hsl(0, 0%, 45%);
+    --grey-four: hsl(0, 0%, 55%);
+    --grey-five: hsl(0, 0%, 65%);
+    --grey-six: hsl(0, 0%, 85%);
+
+    --black-opacity: hsla(0, 100%, 0%, 0.5);
+
+    /* Primary Colour 1 (dark) to 5 (light) */
+    --blue-one: hsl(210, 100%, 20%);
+    --blue-two: hsl(210, 100%, 30%);
+    --blue-three: hsl(210, 100%, 40%);
+    --blue-four: hsl(210, 100%, 50%);
+    --blue-five: hsl(210, 100%, 60%);
+
+    /* Accents 1 (dark) to 3 (light) */
+    --green-one: hsl(120, 100%, 30%);
+    --green-two: hsl(120, 100%, 50%);
+    --green-three: hsl(120, 100%, 70%);
+
+    --red-one: hsl(0, 100%, 30%);
+    --red-two: hsl(0, 100%, 50%);
+    --red-three: hsl(0, 100%, 70%);
+
+    --yellow-one: hsl(60, 100%, 50%);
+    --yellow-two: hsl(60, 100%, 70%);
+    --yellow-three: hsl(60, 100%, 80%);
+}
+
+body {
+    font-family: 'Dosis', sans-serif;
+}
+
+#content {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr 7fr 0.25fr;
+    height: 100vh;
+    width: 100vw;
+}
+
+#header {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    background-color: var(--grey-six);
+}
+
+#sidebar {
+    grid-column: 1 / 2;
+    grid-row: 1 / 4;
+    display: grid;
+    grid-template-rows: 1fr 7.25fr;
+    background-color: var(--blue-two);
+    color: white;
+}
+
+.title-container {
+    grid-row: 1 / 2;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding: 1rem;
+}
+
+.title-container .logo-title {
+    display: flex;
+}
+
+.title-container .title {
+    font-size: 46px;
+}
+
+.title-container .subtitle {
+    font-size: 18px;
+    font-style: italic;
+}
+
+#directory-container {
+    grid-row: 2 / 3;
+    padding: 1rem;
+}
+
+.directory-title {
+    font-size: 24px;
+}
+
+.directory-folder {
+    list-style: none;
+}
+
+.add-dir-btn {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.add-dir-icon:hover {
+    cursor: pointer;
+}
+
+.add-dir-btn-text {
+    align-self: center;
+}
+
+.modal-container {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    background-color: var(--black-opacity)
+}
+
+#list-modal {
+    position: fixed;
+    height: 350px;
+    width: 250px;
+    background-color: var(--grey-five);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+#main {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    background-color: white;
+}
+
+#footer {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--blue-one);
+    color: white;
+}
+
