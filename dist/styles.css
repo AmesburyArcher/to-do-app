@@ -17,7 +17,7 @@
     --grey-five: hsl(0, 0%, 65%);
     --grey-six: hsl(0, 0%, 85%);
 
-    --black-opacity: hsla(0, 100%, 0%, 0.5);
+    --black-opacity: hsla(0, 100%, 0%, 0.6);
 
     /* Primary Colour 1 (dark) to 5 (light) */
     --blue-one: hsl(210, 100%, 20%);
@@ -100,11 +100,42 @@ body {
 
 .directory-folder {
     list-style: none;
+    padding-bottom: 0.25rem;
+}
+
+.directory-folder.directory-active {
+    position: relative;
+}
+
+.directory-folder.directory-active:before{
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 0;
+	border-bottom: solid 1px white;
+	animation: border_anim 0.5s linear forwards;
+}
+
+@keyframes border_anim {
+	0%{
+		width: 0%;
+	}
+	100%{
+		width: 100%;
+	}
+}
+
+#add-dir-form {
+    display: flex;
+    gap: 0.5rem;
 }
 
 .add-dir-btn {
-    display: flex;
-    gap: 0.5rem;
+    border: none;
+    background-color: transparent;
+    height: fit-content;
+    width: fit-content;
 }
 
 .add-dir-icon:hover {
@@ -113,6 +144,25 @@ body {
 
 .add-dir-btn-text {
     align-self: center;
+    background-color: var(--blue-two);
+    color: white;
+    border: none;
+    border-bottom: 1px solid white;
+    width: fit-content;
+    padding: 0.15rem;
+}
+
+.add-dir-btn-text:focus {
+    outline: none;
+}
+
+.add-dir-btn-text:focus::placeholder {
+    color: transparent;
+}
+
+.add-dir-btn-text::placeholder {
+    color: white;
+    font-size: 16px;
 }
 
 .modal-container {
@@ -120,19 +170,35 @@ body {
     height: 100vh;
     width: 100vw;
     z-index: 1;
-    background-color: var(--black-opacity)
+    background-color: var(--black-opacity);
+    /* toggle this */
+    display: none;
 }
 
 #list-modal {
     position: fixed;
     height: 350px;
     width: 250px;
-    background-color: var(--grey-five);
+    background-color: var(--grey-six);
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: 10px;
     padding: 1rem;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+#list-modal input,
+#list-modal textarea {
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.15rem;
+}
+
+#list-modal textarea {
+    resize: none;
+    height: 100px;
 }
 
 #main {

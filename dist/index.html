@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do App</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
 </head>
 <body>
     <div id="content">
@@ -38,19 +39,23 @@
                     Directory List
                 </div>
                 <ul class="directory">
-                    <li class="directory-folder">
+                    <!-- <li class="directory-folder">
                         sample folder
-                    </li>
+                    </li> -->
                 </ul>
-                <div class="add-dir-btn">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="add-dir-icon" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <rect x="4" y="4" width="16" height="16" rx="2" />
-                        <line x1="9" y1="12" x2="15" y2="12" />
-                        <line x1="12" y1="9" x2="12" y2="15" />
-                      </svg>
-                    <div class="add-dir-btn-text">Add Directory Folder</div>
-                </div>
+              
+                <form id="add-dir-form">
+                        <button class="add-dir-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="add-dir-icon" width="28" height="28" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="4" y="4" width="16" height="16" rx="2" />
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <line x1="9" y1="12" x2="15" y2="12" />
+                                <line x1="12" y1="9" x2="12" y2="15" />
+                            </svg>
+                        </button>
+                        <input type="text" class="add-dir-btn-text" placeholder="Add Directory Here">
+                </form>
+                
             </div>
         </div>
 
@@ -58,20 +63,27 @@
 
         </div>
 
-        <div class="modal-container directory">
+        <!-- <div class="modal-container-directory">
             <div id="directory-modal">
                 <form>
                 </form>
             </div>
-        </div>
+        </div> -->
 
-        <div class="modal-container list">
+        <div class="modal-container">
             <div id="list-modal">
                 <div class="list-modal-title">
                     Add a New Task!
                 </div>
                 <form>
-                    <input type="text">
+                    <label for="task">Task:</label>
+                    <input type="text" id="task" name="task">
+
+                    <label for="date">Complete By:</label>
+                    <input type="date" id="date" name="date">
+
+                    <label for="description">Task Description (optional)</label>
+                    <textarea id="description" name="description"></textarea>
                 </form>
             </div>
         </div>

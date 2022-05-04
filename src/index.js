@@ -1,4 +1,10 @@
+import { renderLists, createDirListener } from "./directory-creator";
 
+
+const header = document.querySelector('#header');
+const sidebar = document.querySelector('#sidebar');
+const main = document.querySelector('#main');
+const footer = document.querySelector('#footer');
 
 function createHTMLElement(type, id, classes, content) {
     const element = document.createElement(type);
@@ -11,6 +17,10 @@ function createHTMLElement(type, id, classes, content) {
 
     return element;
 };
+
+
+renderLists();
+createDirListener();
 
 export {
     createHTMLElement
