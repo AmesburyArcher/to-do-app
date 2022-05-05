@@ -94,13 +94,32 @@ body {
     padding: 1rem;
 }
 
+.directory {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    gap: 1rem;
+}
+
 .directory-title {
     font-size: 24px;
+}
+
+.directory-folder-icons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.directory-folder-icons .icon {
+   margin: 4px;
 }
 
 .directory-folder {
     list-style: none;
     padding-bottom: 0.25rem;
+    display: flex;
+    justify-content: space-between;
 }
 
 .directory-folder:hover {
@@ -109,6 +128,7 @@ body {
 
 .directory-folder.directory-active {
     position: relative;
+    font-weight: 700;
 }
 
 .directory-folder.directory-active:before{
