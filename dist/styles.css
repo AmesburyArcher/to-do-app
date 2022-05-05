@@ -103,6 +103,10 @@ body {
     padding-bottom: 0.25rem;
 }
 
+.directory-folder:hover {
+    cursor: pointer;
+}
+
 .directory-folder.directory-active {
     position: relative;
 }

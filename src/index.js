@@ -1,4 +1,4 @@
-import { renderLists, createDirListener } from "./directory-creator";
+import { renderLists, createDirListener, saveAndRenderList } from "./directory-creator";
 
 
 const header = document.querySelector('#header');
@@ -19,7 +19,7 @@ function createHTMLElement(type, id, classes, content) {
 };
 
 
-renderLists();
+saveAndRenderList();
 createDirListener();
 
 export {

@@ -1,22 +1,32 @@
 import { createHTMLElement } from "./index";
 
-let directoryArr = [
-    {
-        id: 1,
-        name: 'name'
-    }, {
-        id: 2,
-        name: 'todo'
-    }
-]
+const LOCAL_STORAGE_DIR_KEY = 'task.list';
+const LOCAL_STORAGE_FOLDER_KEY = 'task.selectedFolder';
+
+let selectedFolder = localStorage.getItem(LOCAL_STORAGE_FOLDER_KEY)
+
+let directoryArr = JSON.parse(localStorage.getItem(LOCAL_STORAGE_DIR_KEY)) || []; 
+
+const saveAndRenderList = () => {
+    save();
+    renderLists();
+}
+
+const save = () => {
+    localStorage.setItem(LOCAL_STORAGE_DIR_KEY, JSON.stringify(directoryArr));
+}
 
 const renderLists = () => {
     const directoryContainer = document.querySelector('.directory');
 
     clearList(directoryContainer);
     directoryArr.forEach(directory => {
-       const directoryFolder = createHTMLElement('li', null, ['directory-folder', 'directory-active'], directory.name)
-       directoryFolder.dataset.listId = directoryArr.id;
+       const directoryFolder = createHTMLElement('li', null, ['directory-folder'], directory.name)
+       directoryFolder.dataset.listId = directory.id;
+       if(directory.id === selectedFolder) {
+           directoryFolder.classList.add('directory-active');
+           console.log('this works');
+       };
        directoryContainer.appendChild(directoryFolder); 
     })
 };
@@ -29,8 +39,10 @@ const clearList = (list) => {
 
 const createDirListener = () => {
     const dirForm = document.querySelector('#add-dir-form');
+    const dirContainer = document.querySelector('.directory');
 
     dirForm.addEventListener('submit', createDirectory)
+    dirContainer.addEventListener('click', selectedDirectory)
 }
 
 const createDirectory = (e) => {
@@ -42,11 +54,18 @@ const createDirectory = (e) => {
     const directory = createNewDir(dirName);
     dirText.value = null;
     directoryArr.push(directory);
-    renderLists();
+    saveAndRenderList();
+}
+
+const selectedDirectory = (e) => {
+    if(e.target.tagName.toLowerCase() === 'li') {
+        selectedFolder = e.target.dataset.listId;
+        saveAndRenderList();
+    }
 }
 
 const createNewDir = (dir) => {
    return { id: Date.now().toString(), name: dir, tasks: [] }
 }
 
-export { renderLists, createDirListener }
+export { renderLists, createDirListener, saveAndRenderList }
