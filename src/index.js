@@ -1,10 +1,5 @@
-import { renderLists, createDirListener, saveAndRenderList } from "./directory-creator";
-
-
-const header = document.querySelector('#header');
-const sidebar = document.querySelector('#sidebar');
-const main = document.querySelector('#main');
-const footer = document.querySelector('#footer');
+import { createDirListener, saveAndRenderList } from "./directory-creator";
+import { toggleTheme } from "./toggleTheme";
 
 function createHTMLElement(type, id, classes, content) {
     const element = document.createElement(type);
@@ -18,7 +13,7 @@ function createHTMLElement(type, id, classes, content) {
     return element;
 };
 
-
+toggleTheme();
 saveAndRenderList();
 createDirListener();
 
