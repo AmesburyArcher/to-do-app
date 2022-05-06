@@ -88,13 +88,11 @@ const deleteDir = (e) => {
         saveAndRenderList();
     }
 }
-//THIS NEEDS TO BE WORKED ON********
+//Editing the directory folder title and updating the array + DOM
 const editDir = (e) => {
     if(e.target.classList.contains('icon-edit') && e.target.parentElement.parentElement.dataset.listId === selectedFolder) {
         const directoryModal = document.querySelector('.directory-modal-container');
         directoryModal.style.display = 'block';
-        let directoryID = e.target.parentElement.parentElement.dataset.listId;
-        let i = directoryArr.map(a => a.id).indexOf(directoryID);
         const editDirBtn = document.querySelector('#directory-edit-form');
 
         const editDirForm = (e) => {
@@ -102,12 +100,13 @@ const editDir = (e) => {
             const directoryModalText = document.querySelector('#text-dir');
             const directoryReName = directoryModalText.value;
             if(directoryReName == null || directoryReName === '') return;
-            const newDirectoryFolder = createNewDir(directoryReName);
+            directoryArr.forEach(dir => {
+                if(dir.id === selectedFolder) {
+                    dir.name = directoryReName
+                }
+            })
             directoryModalText.value = null;
-    
-            directoryArr.splice(i, 1, newDirectoryFolder);
             saveAndRenderList();
-            console.log(i);
             const directoryModal = document.querySelector('.directory-modal-container');
             directoryModal.style.display = 'none';
             editDirBtn.removeEventListener('submit', editDirForm);
