@@ -150,6 +150,10 @@ body {
 	}
 }
 
+.directory-modal-container {
+    display: none;
+}
+
 #add-dir-form {
     display: flex;
     gap: 0.5rem;
