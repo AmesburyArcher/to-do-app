@@ -18,6 +18,8 @@
     --grey-six: hsl(0, 0%, 85%);
 
     --black-opacity: hsla(0, 100%, 0%, 0.6);
+    --white: white;
+    --white-text: white;
 
     /* Primary Colour 1 (dark) to 5 (light) */
     --blue-one: hsl(210, 100%, 20%);
@@ -44,6 +46,15 @@ body {
     font-family: 'Dosis', sans-serif;
 }
 
+body.active {
+    --white: hsl(0, 0%, 35%);
+    --white-text: hsl(0, 0%, 65%);
+    --blue-two: hsl(0, 100%, 0%);
+    --blue-one: hsl(0, 0%, 15%);
+    --grey-six: hsl(0, 0%, 45%);
+    --grey-three: hsl(0, 0%, 55%);
+}
+
 #content {
     position: relative;
     display: grid;
@@ -57,6 +68,37 @@ body {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
     background-color: var(--grey-six);
+    padding: 1.5rem;
+}
+
+#header .current-theme {
+    color: var(--white-text);
+}
+
+.switch-container {
+    display: flex;
+    position: relative;
+    height: 30px;
+    width: 60px;
+    padding: 6px;
+    border-radius: 5px;
+    background-color: var(--grey-three);
+}
+
+.light-dark-mode {
+    position: absolute;
+    align-self: center;
+    height: 24px;
+    width: 26px;
+    border-radius: 5px;
+    background-color: var(--white);
+    transition: 0.5s;
+    transform: translateX(0%);
+}
+
+.light-dark-mode.active {
+    transition: 0.5s;
+    transform: translateX(90%);
 }
 
 #sidebar {
@@ -65,7 +107,7 @@ body {
     display: grid;
     grid-template-rows: 1fr 7.25fr;
     background-color: var(--blue-two);
-    color: white;
+    color: var(--white-text);
 }
 
 .title-container {
@@ -150,7 +192,7 @@ body {
 	left: 0;
 	bottom: 0;
 	width: 0;
-	border-bottom: solid 1px white;
+	border-bottom: solid 1px var(--white);
 	animation: border_anim 0.5s linear forwards;
 }
 
@@ -193,9 +235,18 @@ body {
 }
 
 .directory-modal-title {
+    position: relative;
     align-self: center;
     font-weight: 600;
     font-size: 18px;
+}
+
+.directory-modal-container span {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0.5rem;
+    cursor: pointer;
 }
 
 #directory-edit-form {
@@ -205,7 +256,7 @@ body {
 }
 
 #directory-edit-form input {
-    background-color: white;
+    background-color: var(--white);
     border: none;
     border-radius: 5px;
     padding: 0.15rem;
@@ -215,7 +266,7 @@ body {
     width: fit-content;
     padding: 0.2rem 2rem;
     background-color: var(--blue-two);
-    color: white;
+    color: var(--white-text);
     border: none;
     border-radius: 5px;
     align-self: center;
@@ -244,9 +295,9 @@ body {
 .add-dir-btn-text {
     align-self: center;
     background-color: var(--blue-two);
-    color: white;
+    color: var(--white-text);
     border: none;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--white);
     width: fit-content;
     padding: 0.15rem;
 }
@@ -260,7 +311,7 @@ body {
 }
 
 .add-dir-btn-text::placeholder {
-    color: white;
+    color: var(--white-text);
     font-size: 16px;
 }
 
@@ -289,7 +340,7 @@ body {
 
 #list-modal input,
 #list-modal textarea {
-    background-color: white;
+    background-color: var(--white);
     border: none;
     border-radius: 5px;
     padding: 0.15rem;
@@ -303,7 +354,7 @@ body {
 #main {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
-    background-color: white;
+    background-color: var(--white);
 }
 
 #footer {
@@ -313,6 +364,6 @@ body {
     justify-content: center;
     align-items: center;
     background-color: var(--blue-one);
-    color: white;
+    color: var(--white-text);
 }
 

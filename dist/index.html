@@ -11,7 +11,10 @@
 <body>
     <div id="content">
         <header id="header">
-        
+        <div class="switch-container">
+            <div class="light-dark-mode"></div>
+        </div>
+        <div class="current-theme">Light Mode</div>
         </header>
 
         <div id="sidebar">
@@ -39,9 +42,7 @@
                     Directory List
                 </div>
                 <ul class="directory">
-                    <!-- <li class="directory-folder">
-                        sample folder
-                    </li> -->
+            
                 </ul>
               
                 <form id="add-dir-form">
@@ -68,6 +69,11 @@
                 <div class="directory-modal-title">
                     Change Directory Folder Name
                 </div>
+                <span><svg xmlns="http://www.w3.org/2000/svg" class="icon-tabler-square-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                    <rect x="4" y="4" width="16" height="16" rx="2" />
+                    <path d="M10 10l4 4m0 -4l-4 4" />
+                  </svg></span>
                 <form id="directory-edit-form">
                     <div>
                         <label for="text-dir">New Directory Folder Name:</label>

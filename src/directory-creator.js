@@ -94,6 +94,7 @@ const editDir = (e) => {
         const directoryModal = document.querySelector('.directory-modal-container');
         directoryModal.classList.toggle('active');
         const editDirBtn = document.querySelector('#directory-edit-form');
+        const closeEditDirBtn = document.querySelector('.icon-tabler-square-x');
 
         const editDirForm = (e) => {
             e.preventDefault();
@@ -107,12 +108,19 @@ const editDir = (e) => {
             })
             directoryModalText.value = null;
             saveAndRenderList();
-            const directoryModal = document.querySelector('.directory-modal-container');
+            // const directoryModal = document.querySelector('.directory-modal-container');
             directoryModal.classList.toggle('active');
             editDirBtn.removeEventListener('submit', editDirForm);
         }
 
-        editDirBtn.addEventListener('submit', editDirForm)
+        const closeEditDir = () => {
+            directoryModal.classList.toggle('active');
+            editDirBtn.removeEventListener('submit', editDirForm);
+            closeEditDirBtn.removeEventListener('click', closeEditDir);
+        }
+
+        closeEditDirBtn.addEventListener('click', closeEditDir);
+        editDirBtn.addEventListener('submit', editDirForm);
     }
     
 
