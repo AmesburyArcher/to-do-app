@@ -87,8 +87,9 @@ const deleteDir = (e) => {
     if(e.target.classList.contains('icon-trash') && e.target.parentElement.parentElement.parentElement.dataset.listId === selectedFolder) {
         directoryArr = directoryArr.filter(directory => directory.id !== selectedFolder);
         selectedFolder = null;
-        saveAndRenderList();
-        renderTasks();
+        // saveAndRenderList();
+        // renderTasks();
+        render();
     }
 }
 //Editing the directory folder title and updating the array + DOM
@@ -98,6 +99,7 @@ const editDir = (e) => {
         directoryModal.classList.toggle('active');
         const editDirBtn = document.querySelector('#directory-edit-form');
         const closeEditDirBtn = document.querySelector('.icon-tabler-square-x');
+        console.log('click');
 
         const editDirForm = (e) => {
             e.preventDefault();
@@ -111,13 +113,12 @@ const editDir = (e) => {
             })
             directoryModalText.value = null;
             saveAndRenderList();
-            // const directoryModal = document.querySelector('.directory-modal-container');
-            directoryModal.classList.toggle('active');
+            directoryModal.classList.remove('active');
             editDirBtn.removeEventListener('submit', editDirForm);
         }
 
         const closeEditDir = () => {
-            directoryModal.classList.toggle('active');
+            directoryModal.classList.remove('active');
             editDirBtn.removeEventListener('submit', editDirForm);
             closeEditDirBtn.removeEventListener('click', closeEditDir);
         }

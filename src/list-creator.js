@@ -1,4 +1,4 @@
-import { createHTMLElement } from "./index";
+import { createHTMLElement, render } from "./index";
 import { renderLists, createDirListener, saveAndRenderList, directoryArr, selectedFolder, clearList } from "./directory-creator";
 
 const folderDisplayContainer = document.querySelector('#to-do-list');
@@ -10,7 +10,12 @@ const taskTemplate = document.querySelector('#task-template');
 
 const listListeners = () => {
     const createTaskBtn = document.querySelector('.create-task-btn');
-    createTaskBtn.addEventListener('click', createTask)
+    createTaskBtn.addEventListener('click', createTaskModal)
+
+    const submitTask = document.querySelector('#add-task');
+    submitTask.addEventListener('submit', submitForm);
+
+    
 }
 
 const renderTaskNum = (selectedTaskNum) => {
@@ -25,9 +30,15 @@ const renderTaskList = (selectedTaskList) => {
         const checkBox = taskDOM.querySelector('input');
         checkBox.id = task.id;
         checkBox.checked = task.complete;
-        const taskDesc =  taskDOM.querySelector('.task-desc');
-        taskDesc.textContent = task.name;
+        const taskName =  taskDOM.querySelector('.task-name');
+        taskName.textContent = task.name;
+
+        const taskDesc = taskDOM.querySelector('.task-desc')
+        task.desc ? taskDesc.textContent = ` Description: ${task.desc}` : taskDesc.textContent = 'No Description.';
+       
         const taskDate = taskDOM.querySelector('.task-date');
+        taskDate.textContent = ` Complete by: ${task.date}`;
+
         taskContainer.appendChild(taskDOM);
     })
     
@@ -50,9 +61,33 @@ const renderTasks = () => {
 }
 
 //YOU WERE LAST HERE WORKING ON THIS NEED TO TOGGLE CLASS TO DISPLAY MODAL TO INPUT NEW TASK*******
-const createTask = () => {
+const createTaskModal = () => {
     const listModal = document.querySelector('.modal-container')
     listModal.classList.add('active');
+}
+
+const submitForm = (e) => {
+    e.preventDefault();
+    const listModal = document.querySelector('.modal-container')
+    const taskInputName = document.querySelector('#task');
+    const taskInputDesc = document.querySelector('#description');
+    const taskInputDate = document.querySelector('#date');
+    
+    const taskName = taskInputName.value;
+    if(taskName == null || taskName === '') return;
+    const taskDesc = taskInputDesc.value;
+    const taskDate = taskInputDate.value
+    const task = createTask(taskName, taskDesc, taskDate);
+    taskInputName.value = null;
+    taskInputDesc.value = null;
+    const selectedList = directoryArr.find(list => list.id === selectedFolder);
+    selectedList.tasks.push(task);
+    listModal.classList.remove('active');
+    render();
+}
+
+const createTask = (task, desc, date) => {
+    return {  id: Date.now().toString(), name: task, desc: desc, date: date, complete: false,  }
 }
 
 
