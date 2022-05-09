@@ -19,8 +19,9 @@ const render = () => {
     renderTasks();
 }
 
+
 toggleTheme();
-render();
+saveAndRenderList();
 createDirListener();
 listListeners();
 
