@@ -1,4 +1,5 @@
-import { createHTMLElement } from "./index";
+import { createHTMLElement, render } from "./index";
+import { renderTasks } from "./list-creator";
 
 const LOCAL_STORAGE_DIR_KEY = 'task.list';
 const LOCAL_STORAGE_FOLDER_KEY = 'task.selectedFolder';
@@ -77,6 +78,7 @@ const selectedDirectoryListener = (e) => {
     if(e.target.tagName.toLowerCase() === 'li') {
         selectedFolder = e.target.dataset.listId;
         saveAndRenderList();
+        renderTasks();
     }
 }
 
@@ -86,6 +88,7 @@ const deleteDir = (e) => {
         directoryArr = directoryArr.filter(directory => directory.id !== selectedFolder);
         selectedFolder = null;
         saveAndRenderList();
+        renderTasks();
     }
 }
 //Editing the directory folder title and updating the array + DOM
@@ -128,7 +131,11 @@ const editDir = (e) => {
 
 //creates a directory folder object to be pushed into directory array
 const createNewDir = (dir) => {
-   return { id: Date.now().toString(), name: dir, tasks: [] }
+   return { id: Date.now().toString(), name: dir, tasks: [{
+       id: 'shghjajhf',
+       name: 'test',
+       complete: false
+   }] }
 }
 
-export { renderLists, createDirListener, saveAndRenderList }
+export { renderLists, createDirListener, saveAndRenderList, directoryArr, selectedFolder, clearList }

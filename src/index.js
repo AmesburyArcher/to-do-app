@@ -1,5 +1,6 @@
-import { createDirListener, saveAndRenderList } from "./directory-creator";
+import { createDirListener, saveAndRenderList, renderLists, directoryArr, selectedFolder } from "./directory-creator";
 import { toggleTheme } from "./toggleTheme";
+import { removeTaskDisplay, renderTasks } from "./list-creator"
 
 function createHTMLElement(type, id, classes, content) {
     const element = document.createElement(type);
@@ -13,10 +14,21 @@ function createHTMLElement(type, id, classes, content) {
     return element;
 };
 
+const render = () => {
+    saveAndRenderList();
+    renderTasks();
+}
+
+function hello() {
+    console.log('allo world')
+}
+
+hello();
+
 toggleTheme();
-saveAndRenderList();
+render();
 createDirListener();
 
 export {
-    createHTMLElement
+    createHTMLElement, render
 }
