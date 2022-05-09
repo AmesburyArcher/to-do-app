@@ -21,7 +21,7 @@ const render = () => {
 
 
 toggleTheme();
-saveAndRenderList();
+render();
 createDirListener();
 listListeners();
 

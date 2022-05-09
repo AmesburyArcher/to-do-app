@@ -37,7 +37,7 @@ const renderTaskList = (selectedTaskList) => {
         task.desc ? taskDesc.textContent = ` Description: ${task.desc}` : taskDesc.textContent = 'No Description.';
        
         const taskDate = taskDOM.querySelector('.task-date');
-        taskDate.textContent = ` Complete by: ${task.date}`;
+        task.date ? taskDate.textContent = ` Complete by: ${task.date}` : taskDate.textContent = 'No Completion Date.';
 
         taskContainer.appendChild(taskDOM);
     })
@@ -48,9 +48,8 @@ const renderTaskList = (selectedTaskList) => {
 const renderTasks = () => {
     const selectedList = directoryArr.find(list => list.id === selectedFolder);
 
-    if(selectedFolder == null) {
+    if(selectedList == null) {
         folderDisplayContainer.style.display = 'none';
-        
     } else {
         folderDisplayContainer.style.display = '';
         folderTitle.textContent = selectedList.name;
@@ -80,6 +79,7 @@ const submitForm = (e) => {
     const task = createTask(taskName, taskDesc, taskDate);
     taskInputName.value = null;
     taskInputDesc.value = null;
+    taskInputDate.value = null;
     const selectedList = directoryArr.find(list => list.id === selectedFolder);
     selectedList.tasks.push(task);
     listModal.classList.remove('active');
