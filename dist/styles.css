@@ -328,6 +328,10 @@ body.active {
     display: none;
 }
 
+.modal-container.active {
+    display: block;
+}
+
 #list-modal {
     position: fixed;
     height: 350px;

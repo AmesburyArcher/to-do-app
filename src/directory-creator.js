@@ -131,11 +131,7 @@ const editDir = (e) => {
 
 //creates a directory folder object to be pushed into directory array
 const createNewDir = (dir) => {
-   return { id: Date.now().toString(), name: dir, tasks: [{
-       id: 'shghjajhf',
-       name: 'test',
-       complete: false
-   }] }
+   return { id: Date.now().toString(), name: dir, tasks: [] }
 }
 
 export { renderLists, createDirListener, saveAndRenderList, directoryArr, selectedFolder, clearList }
