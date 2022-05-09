@@ -1,5 +1,5 @@
 import { createHTMLElement, render } from "./index";
-import { renderLists, createDirListener, saveAndRenderList, directoryArr, selectedFolder, clearList } from "./directory-creator";
+import { renderLists, createDirListener, saveAndRenderList, directoryArr, selectedFolder, clearList, save } from "./directory-creator";
 
 const folderDisplayContainer = document.querySelector('#to-do-list');
 const folderTitle = document.querySelector('.to-do-title');
@@ -15,7 +15,27 @@ const listListeners = () => {
     const submitTask = document.querySelector('#add-task');
     submitTask.addEventListener('submit', submitForm);
 
+    taskContainer.addEventListener('click', taskCheck);
+
+    const deleteTasks = document.querySelector('.delete-tasks');
+    deleteTasks.addEventListener('click', deleteSelectedTasks)
     
+}
+
+const deleteSelectedTasks = () => {
+    const selectedList = directoryArr.find(list => list.id === selectedFolder);
+    selectedList.tasks = selectedList.tasks.filter(task => !task.complete);
+    render();
+}
+
+const taskCheck = (e) => {
+    if(e.target.tagName.toLowerCase() === 'input') {
+        const selectedList = directoryArr.find(list => list.id === selectedFolder);
+        const selectedTask = selectedList.tasks.find(task => task.id === e.target.id) 
+        selectedTask.complete = e.target.checked;
+        save();
+        renderTaskNum(selectedList);
+    }
 }
 
 const renderTaskNum = (selectedTaskNum) => {

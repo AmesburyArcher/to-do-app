@@ -19,11 +19,14 @@ const render = () => {
     renderTasks();
 }
 
+const onLoad = () => {
+    toggleTheme();
+    render();
+    createDirListener();
+    listListeners(); 
+}
 
-toggleTheme();
-render();
-createDirListener();
-listListeners();
+onLoad();
 
 export {
     createHTMLElement, render

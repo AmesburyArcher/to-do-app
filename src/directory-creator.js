@@ -99,7 +99,6 @@ const editDir = (e) => {
         directoryModal.classList.toggle('active');
         const editDirBtn = document.querySelector('#directory-edit-form');
         const closeEditDirBtn = document.querySelector('.icon-tabler-square-x');
-        console.log('click');
 
         const editDirForm = (e) => {
             e.preventDefault();
@@ -135,4 +134,4 @@ const createNewDir = (dir) => {
    return { id: Date.now().toString(), name: dir, tasks: [] }
 }
 
-export { renderLists, createDirListener, saveAndRenderList, directoryArr, selectedFolder, clearList }
+export { renderLists, createDirListener, saveAndRenderList, directoryArr, selectedFolder, clearList, save }
