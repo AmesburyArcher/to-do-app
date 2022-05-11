@@ -7,7 +7,7 @@ const taskCount = document.querySelector('.task-count');
 const taskContainer = document.querySelector('.tasks');
 const taskTemplate = document.querySelector('#task-template');
 
-
+// creates listeners for tasks
 const listListeners = () => {
     const createTaskBtn = document.querySelector('.create-task-btn');
     createTaskBtn.addEventListener('click', createTaskModal)
@@ -22,12 +22,14 @@ const listListeners = () => {
     
 }
 
+// deletes selected tasks
 const deleteSelectedTasks = () => {
     const selectedList = directoryArr.find(list => list.id === selectedFolder);
     selectedList.tasks = selectedList.tasks.filter(task => !task.complete);
     render();
 }
 
+// checks if task is marked complete
 const taskCheck = (e) => {
     if(e.target.tagName.toLowerCase() === 'input') {
         const selectedList = directoryArr.find(list => list.id === selectedFolder);
@@ -38,12 +40,14 @@ const taskCheck = (e) => {
     }
 }
 
+// renders and displays to DOM number of tasks remaining to complete
 const renderTaskNum = (selectedTaskNum) => {
     const incomplete = selectedTaskNum.tasks.filter(task => !task.complete).length;
     const tasksString = incomplete === 1 ? "task" : "tasks";
     taskCount.textContent = `${incomplete} ${tasksString} remaining`;
 }
 
+// function used to create the task element for the DOM
 const renderTaskList = (selectedTaskList) => {
     selectedTaskList.tasks.forEach(task => {
         const taskDOM = document.importNode(taskTemplate.content, true)
@@ -64,7 +68,7 @@ const renderTaskList = (selectedTaskList) => {
     
 }
 
-
+// renders the tasks from the selected folder on the screen
 const renderTasks = () => {
     const selectedList = directoryArr.find(list => list.id === selectedFolder);
 
@@ -79,12 +83,13 @@ const renderTasks = () => {
     }
 }
 
-//YOU WERE LAST HERE WORKING ON THIS NEED TO TOGGLE CLASS TO DISPLAY MODAL TO INPUT NEW TASK*******
+// function that displays modal to add new task
 const createTaskModal = () => {
     const listModal = document.querySelector('.modal-container')
     listModal.classList.add('active');
 }
 
+// function that processes the input from the create task modal and submits it for storage and display
 const submitForm = (e) => {
     e.preventDefault();
     const listModal = document.querySelector('.modal-container')
@@ -106,6 +111,7 @@ const submitForm = (e) => {
     render();
 }
 
+// this function creates the task object to be pushed into the directoryArr.tasks array
 const createTask = (task, desc, date) => {
     return {  id: Date.now().toString(), name: task, desc: desc, date: date, complete: false,  }
 }

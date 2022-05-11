@@ -13,4 +13,4 @@ function formatAMPM() {
     return days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes+ampm;
     }
 
-export { displayDate }
+export { displayDate, formatAMPM }
