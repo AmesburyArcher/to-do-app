@@ -88,6 +88,13 @@ const renderTasks = () => {
     }
 }
 
+
+
+//CREATE A CLOSE BUTTON LISTENER FOR THE ADD NEW TASK MODAL
+
+
+
+
 // function that displays modal to add new task
 const createTaskModal = () => {
     const listModal = document.querySelector('.modal-container')
