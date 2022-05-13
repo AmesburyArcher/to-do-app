@@ -1,5 +1,7 @@
 import { createHTMLElement, render } from "./index";
 import { renderLists, createDirListener, saveAndRenderList, directoryArr, selectedFolder, clearList, save } from "./directory-creator";
+import { formatAMPM } from "./date";
+
 
 const folderDisplayContainer = document.querySelector('#to-do-list');
 const folderTitle = document.querySelector('.to-do-title');
@@ -63,6 +65,9 @@ const renderTaskList = (selectedTaskList) => {
         const taskDate = taskDOM.querySelector('.task-date');
         task.date ? taskDate.textContent = ` Complete by: ${task.date}` : taskDate.textContent = 'No Completion Date.';
 
+        const taskPosted = taskDOM.querySelector('.task-posted');
+        taskPosted.textContent = `Posted on: ${task.posted}`;
+
         taskContainer.appendChild(taskDOM);
     })
     
@@ -96,12 +101,13 @@ const submitForm = (e) => {
     const taskInputName = document.querySelector('#task');
     const taskInputDesc = document.querySelector('#description');
     const taskInputDate = document.querySelector('#date');
+    const taskPosted = formatAMPM();
     
     const taskName = taskInputName.value;
     if(taskName == null || taskName === '') return;
     const taskDesc = taskInputDesc.value;
     const taskDate = taskInputDate.value
-    const task = createTask(taskName, taskDesc, taskDate);
+    const task = createTask(taskName, taskDesc, taskDate, taskPosted);
     taskInputName.value = null;
     taskInputDesc.value = null;
     taskInputDate.value = null;
@@ -112,8 +118,8 @@ const submitForm = (e) => {
 }
 
 // this function creates the task object to be pushed into the directoryArr.tasks array
-const createTask = (task, desc, date) => {
-    return {  id: Date.now().toString(), name: task, desc: desc, date: date, complete: false,  }
+const createTask = (task, desc, date, posted) => {
+    return {  id: Date.now().toString(), name: task, desc: desc, date: date, posted: posted, complete: false,  }
 }
 
 

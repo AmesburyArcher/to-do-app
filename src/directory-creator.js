@@ -112,6 +112,7 @@ const editDir = (e) => {
             })
             directoryModalText.value = null;
             saveAndRenderList();
+            renderTasks();
             directoryModal.classList.remove('active');
             editDirBtn.removeEventListener('submit', editDirForm);
         }
