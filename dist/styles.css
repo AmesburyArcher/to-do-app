@@ -251,7 +251,7 @@ body.active {
     padding: 0.5rem;
 }
 
-.directory-modal-container .icon-tabler-square-x {
+.icon-tabler-square-x {
     cursor: pointer;
 }
 
@@ -271,7 +271,7 @@ body.active {
 .directory-edit-form-btn {
     width: fit-content;
     padding: 0.2rem 2rem;
-    background-color: var(--blue-two);
+    background-color: var(--blue-four);
     color: var(--white-text);
     border: none;
     border-radius: 5px;
@@ -361,6 +361,8 @@ body.active {
     top: 0;
     right: 0;
     padding: 0.5rem;
+    width: fit-content;
+    height: fit-content;
 }
 
 #list-modal #add-task {

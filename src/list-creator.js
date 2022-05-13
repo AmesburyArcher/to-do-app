@@ -21,6 +21,9 @@ const listListeners = () => {
 
     const deleteTasks = document.querySelector('.delete-tasks');
     deleteTasks.addEventListener('click', deleteSelectedTasks)
+
+    const closeTask = document.querySelector('.close-task-modal');
+    closeTask.addEventListener('click', closeTaskModal);
     
 }
 
@@ -88,12 +91,10 @@ const renderTasks = () => {
     }
 }
 
-
-
-//CREATE A CLOSE BUTTON LISTENER FOR THE ADD NEW TASK MODAL
-
-
-
+const closeTaskModal = () => {
+    const listModal = document.querySelector('.modal-container')
+    listModal.classList.remove('active');
+}
 
 // function that displays modal to add new task
 const createTaskModal = () => {
