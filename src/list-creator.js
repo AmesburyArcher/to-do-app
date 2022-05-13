@@ -17,7 +17,11 @@ const listListeners = () => {
     const submitTask = document.querySelector('#add-task');
     submitTask.addEventListener('submit', submitForm);
 
+    //check if complete
     taskContainer.addEventListener('click', taskCheck);
+
+    //edit task
+    taskContainer.addEventListener('click', editTaskDetails);
 
     const deleteTasks = document.querySelector('.delete-tasks');
     deleteTasks.addEventListener('click', deleteSelectedTasks)
@@ -71,9 +75,52 @@ const renderTaskList = (selectedTaskList) => {
         const taskPosted = taskDOM.querySelector('.task-posted');
         taskPosted.textContent = `Posted on: ${task.posted}`;
 
+        const editTask = taskDOM.querySelector('.edit-task');
+        editTask.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" class="edit-task-icon" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" /><line x1="13.5" y1="6.5" x2="17.5" y2="10.5" /></svg>'
+
         taskContainer.appendChild(taskDOM);
     })
     
+}
+
+const editTaskDetails = (e) => {
+
+    const selectedList = directoryArr.find(list => list.id === selectedFolder); 
+    const selectedElement = e.target.parentNode.parentNode;
+    const selectedTask = Array.from(selectedElement.parentNode.children).indexOf(selectedElement)
+
+    const taskInputName = document.querySelector('.task-edit');
+    const taskInputDesc = document.querySelector('.description-edit');
+    const taskInputDate = document.querySelector('.date-edit');
+
+    let items = selectedList.tasks[selectedTask];
+    const taskEditModal = document.querySelector('.modal-container-edit');
+    const taskEditForm = document.querySelector('#add-task-edit');
+
+    if(e.target.classList.contains('edit-task-icon')) {
+       taskInputName.value = items.name;
+       items.desc ? taskInputDesc.value = items.desc : taskInputDesc.value = '';
+       items.date ? taskInputDate.value = items.date : taskInputDate.value = '';
+       
+       taskEditModal.classList.add('active');
+       
+    const submitTaskEdit = (e) => {
+        console.log(selectedTask)
+        e.preventDefault();
+        items.name = taskInputName.value;
+        items.desc = taskInputDesc.value;
+        items.date = taskInputDate.value;
+        items = '';
+        console.log(items);
+        taskEditModal.classList.remove('active');
+        taskEditForm.removeEventListener('submit', submitTaskEdit);
+        renderTasks();
+        save();
+    }
+
+       taskEditForm.addEventListener('submit', submitTaskEdit)
+    }
+
 }
 
 // renders the tasks from the selected folder on the screen
@@ -91,6 +138,7 @@ const renderTasks = () => {
     }
 }
 
+// closes the task modal with click of button
 const closeTaskModal = () => {
     const listModal = document.querySelector('.modal-container')
     listModal.classList.remove('active');

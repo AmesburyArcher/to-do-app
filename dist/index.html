@@ -135,6 +135,33 @@
             </div>
         </div>
 
+        <div class="modal-container-edit">
+            <div id="list-modal">
+                <div class="list-modal-title">
+                    Edit Task!
+                    <span class="close-task-modal-edit">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon-tabler-square-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <rect x="4" y="4" width="16" height="16" rx="2" />
+                            <path d="M10 10l4 4m0 -4l-4 4" />
+                            </svg>
+                    </span>
+                </div>
+                <form id="add-task-edit">
+                    <label for="task">Task: (required)</label>
+                    <input type="text" id="task" class="task-edit" name="task" required>
+
+                    <label for="date">Complete By: (optional)</label>
+                    <input type="date" id="date" class="date-edit" name="date">
+
+                    <label for="description">Task Description: (optional)</label>
+                    <textarea id="description" class="description-edit" name="description"></textarea>
+
+                    <button class="add-task-btn">Submit Task</button>
+                </form>
+            </div>
+        </div>
+
         <footer id="footer">
             Created by AmesburyArcher
         </footer>
@@ -153,6 +180,9 @@
             </div>
             <div class="task-posted">
                 
+            </div>
+            <div class="edit-task">
+
             </div>
         </div>
     </template>

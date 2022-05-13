@@ -400,6 +400,7 @@ body.active {
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     background-color: var(--white);
+    overflow: scroll;
 }
 
 #to-do-list {
@@ -438,8 +439,8 @@ body.active {
 }
 
 .tasks .task {
-    display: flex;
-    align-items: baseline;
+    display: grid;
+    grid-template-columns: 0.2fr 0.5fr 1.5fr 0.5fr 0.75fr 0.2fr;
     gap: 1rem;
     height: 4rem;
     padding-bottom: 0.5rem;
@@ -467,18 +468,32 @@ body.active {
     width: 18px;
     height: 18px;
     font-size: 18px;
-  }
+}
+
 .task input[type=checkbox]::after {
     content: " ";
     background-color: var(--blue-two);
     display: inline-block;
     visibility: visible;
-  }
+}
+
  .task input[type=checkbox]:checked::after {
     content: "\2714";
     color: var(--white-text);
     padding: 0 0.15rem;
-  }
+}
+
+.task .edit-task-icon {
+    cursor: pointer;
+}
+
+.modal-container-edit {
+    display: none;
+}
+
+.modal-container-edit.active {
+    display: block;
+}
 
 #footer {
     grid-column: 2 / 3;
