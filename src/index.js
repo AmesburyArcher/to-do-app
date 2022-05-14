@@ -26,7 +26,10 @@ const onLoad = () => {
     createDirListener();
     listListeners(); 
     displayDate();
+    time;
 }
+
+const time = setInterval(displayDate, 1000);
 
 onLoad();
 

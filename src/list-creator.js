@@ -97,26 +97,35 @@ const editTaskDetails = (e) => {
     const taskEditModal = document.querySelector('.modal-container-edit');
     const taskEditForm = document.querySelector('#add-task-edit');
 
-    if(e.target.classList.contains('edit-task-icon')) {
+    if(e.target.classList.contains('edit-task-icon') || e.target.classList.contains('edit-task')) {
        taskInputName.value = items.name;
        items.desc ? taskInputDesc.value = items.desc : taskInputDesc.value = '';
        items.date ? taskInputDate.value = items.date : taskInputDate.value = '';
        
        taskEditModal.classList.add('active');
        
-    const submitTaskEdit = (e) => {
-        console.log(selectedTask)
-        e.preventDefault();
-        items.name = taskInputName.value;
-        items.desc = taskInputDesc.value;
-        items.date = taskInputDate.value;
-        items = '';
-        console.log(items);
-        taskEditModal.classList.remove('active');
-        taskEditForm.removeEventListener('submit', submitTaskEdit);
-        renderTasks();
-        save();
-    }
+        const submitTaskEdit = (e) => {
+            console.log(selectedTask)
+            e.preventDefault();
+            items.name = taskInputName.value;
+            items.desc = taskInputDesc.value;
+            items.date = taskInputDate.value;
+            items = '';
+            console.log(items);
+            taskEditModal.classList.remove('active');
+            taskEditForm.removeEventListener('submit', submitTaskEdit);
+            renderTasks();
+            save();
+        }
+
+        const closeEditTask = () => {
+            taskEditForm.removeEventListener('submit', submitTaskEdit);
+            taskEditModal.classList.remove('active');
+            closeEditTaskModal.removeEventListener('click', closeEditTask);
+        }
+
+        const closeEditTaskModal = document.querySelector('.close-task-modal-edit');
+        closeEditTaskModal.addEventListener('click', closeEditTask)
 
        taskEditForm.addEventListener('submit', submitTaskEdit)
     }

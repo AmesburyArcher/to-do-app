@@ -84,17 +84,18 @@ const selectedDirectoryListener = (e) => {
 
 //function for the deletedir listener 
 const deleteDir = (e) => {
-    if(e.target.classList.contains('icon-trash') && e.target.parentElement.parentElement.parentElement.dataset.listId === selectedFolder) {
+    if(e.target.classList.contains('icon-trash') || e.target.classList.contains('button-trash')) {
+        if(e.target.parentElement.parentElement.parentElement.dataset.listId === selectedFolder || e.target.parentElement.parentElement.dataset.listId === selectedFolder) {
         directoryArr = directoryArr.filter(directory => directory.id !== selectedFolder);
         selectedFolder = null;
-        // saveAndRenderList();
-        // renderTasks();
         render();
+        }
     }
 }
 //Editing the directory folder title and updating the array + DOM
 const editDir = (e) => {
-    if(e.target.classList.contains('icon-edit') && e.target.parentElement.parentElement.parentElement.dataset.listId === selectedFolder) {
+    if(e.target.classList.contains('icon-edit') || e.target.classList.contains('button-edit')) {
+        if(e.target.parentElement.parentElement.parentElement.dataset.listId === selectedFolder || e.target.parentElement.parentElement.dataset.listId === selectedFolder) {
         const directoryModal = document.querySelector('.directory-modal-container');
         directoryModal.classList.toggle('active');
         const editDirBtn = document.querySelector('#directory-edit-form');
@@ -125,6 +126,7 @@ const editDir = (e) => {
 
         closeEditDirBtn.addEventListener('click', closeEditDir);
         editDirBtn.addEventListener('submit', editDirForm);
+    }
     }
     
 

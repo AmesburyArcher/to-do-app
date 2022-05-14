@@ -54,6 +54,7 @@ body.active {
     --blue-one: hsl(0, 0%, 15%);
     --grey-six: hsl(0, 0%, 45%);
     --grey-three: hsl(0, 0%, 55%);
+    --grey-one: hsl(0, 100%, 0%);
 }
 
 #content {
@@ -68,12 +69,26 @@ body.active {
 #header {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     background-color: var(--grey-six);
     padding: 1.5rem;
 }
 
 #header .current-theme {
     color: var(--white-text);
+    position: absolute;
+    top: 35px;
+    left: 0;
+    width: 70px;
+}
+
+#header .current-date {
+    font-size: 28px;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    justify-self: flex-end;
 }
 
 .switch-container {
@@ -423,12 +438,17 @@ body.active {
     justify-content: space-between;
     align-items: baseline;
     gap: 2rem;
+    color: var(--grey-one);
+}
+
+.to-do-header .to-do-title {
+    font-size: 32px;
 }
 
 .to-do-body {
     height: fit-content;
     width: fit-content;
-    padding: 1rem;
+    padding: 3rem 1rem;
 }
 
 .tasks {
@@ -440,27 +460,30 @@ body.active {
 
 .tasks .task {
     display: grid;
-    grid-template-columns: 0.2fr 0.5fr 1.5fr 0.5fr 0.75fr 0.2fr;
+    grid-template-columns: 0.1fr 0.75fr 1.5fr 0.5fr 0.75fr 0.1fr;
     gap: 1rem;
+    color: var(--grey-one);
     height: 4rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid var(--blue-two);
 }
 
 .task .task-name {
-    width: fit-content;
-    max-width: 15ch;
     height: fit-content;
     max-height: 3rem;
     hyphens: auto;
     overflow: scroll;
+    font-weight: 600;
 }
 
 .task .task-desc {
-    width: fit-content;
-    max-width: 40ch;
     height: fit-content;
     max-height: 3rem;
+    overflow: scroll;
+}
+
+.task .task-posted, 
+.task, .task-date {
     overflow: scroll;
 }
 
@@ -489,10 +512,30 @@ body.active {
 
 .modal-container-edit {
     display: none;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    z-index: 1;
+    background-color: var(--black-opacity);
 }
 
 .modal-container-edit.active {
     display: block;
+}
+
+#list-modal #add-task-edit {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+#list-modal .close-task-modal-edit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5rem;
+    width: fit-content;
+    height: fit-content;
 }
 
 #footer {

@@ -3,6 +3,8 @@ const displayDate = () => {
     dateDOM.textContent = formatAMPM()
 }
 
+
+// creates the current date at time of execution
 function formatAMPM() {
     const d = new Date()
     let minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes();
