@@ -29,7 +29,7 @@ function toggleMode() {
         currentTheme.textContent = 'Dark Mode';
     } else {
         currentTheme.textContent = 'Light Mode';
-    };
+    }
 }
 }
 

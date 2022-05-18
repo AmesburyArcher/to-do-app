@@ -1,5 +1,5 @@
-import { createHTMLElement, render } from "./index";
-import { renderLists, createDirListener, saveAndRenderList, directoryArr, selectedFolder, clearList, save } from "./directory-creator";
+import { render } from "./index";
+import { directoryArr, selectedFolder, clearList, save } from "./directory-creator";
 import { formatAMPM } from "./date";
 
 
@@ -11,9 +11,12 @@ const taskTemplate = document.querySelector('#task-template');
 
 // creates listeners for tasks
 const listListeners = () => {
+
+    // create new task button
     const createTaskBtn = document.querySelector('.create-task-btn');
     createTaskBtn.addEventListener('click', createTaskModal)
 
+    // submit new task button
     const submitTask = document.querySelector('#add-task');
     submitTask.addEventListener('submit', submitForm);
 
@@ -23,9 +26,11 @@ const listListeners = () => {
     //edit task
     taskContainer.addEventListener('click', editTaskDetails);
 
+    // delete selected tasks button
     const deleteTasks = document.querySelector('.delete-tasks');
     deleteTasks.addEventListener('click', deleteSelectedTasks)
 
+    // close task modal
     const closeTask = document.querySelector('.close-task-modal');
     closeTask.addEventListener('click', closeTaskModal);
     
@@ -83,6 +88,7 @@ const renderTaskList = (selectedTaskList) => {
     
 }
 
+// function to edit task details
 const editTaskDetails = (e) => {
 
     const selectedList = directoryArr.find(list => list.id === selectedFolder); 
@@ -104,6 +110,7 @@ const editTaskDetails = (e) => {
        
        taskEditModal.classList.add('active');
        
+       // function to submit task edit form
         const submitTaskEdit = (e) => {
             console.log(selectedTask)
             e.preventDefault();
@@ -118,6 +125,7 @@ const editTaskDetails = (e) => {
             save();
         }
 
+        // function to close task edit modal
         const closeEditTask = () => {
             taskEditForm.removeEventListener('submit', submitTaskEdit);
             taskEditModal.classList.remove('active');

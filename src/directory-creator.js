@@ -30,7 +30,7 @@ const renderLists = () => {
        //if the folder is selected, make it active folder
        if(directory.id === selectedFolder) {
            directoryFolder.classList.add('directory-active');
-       };
+       }
        directoryContainer.appendChild(directoryFolder); 
 
        const directoryFolderIcons = createHTMLElement('span', null, ['directory-folder-icons'], null);
@@ -38,7 +38,7 @@ const renderLists = () => {
        //if the folder is selected, add the icons
        if(directoryFolder.classList.contains('directory-active')) {
        directoryFolder.appendChild(directoryFolderIcons);
-       };
+       }
     })
 };
 
