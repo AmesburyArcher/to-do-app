@@ -72,10 +72,10 @@ const renderTaskList = (selectedTaskList) => {
         taskName.textContent = task.name;
 
         const taskDesc = taskDOM.querySelector('.task-desc')
-        task.desc ? taskDesc.textContent = ` Description: ${task.desc}` : taskDesc.textContent = 'No Description.';
+        task.desc ? taskDesc.textContent = ` Description: ${task.desc}` : taskDesc.textContent = 'No Description';
        
         const taskDate = taskDOM.querySelector('.task-date');
-        task.date ? taskDate.textContent = ` Complete by: ${task.date}` : taskDate.textContent = 'No Completion Date.';
+        task.date ? taskDate.textContent = ` Complete by: ${task.date}` : taskDate.textContent = 'No Completion Date';
 
         const taskPosted = taskDOM.querySelector('.task-posted');
         taskPosted.textContent = `Posted on: ${task.posted}`;
@@ -112,13 +112,11 @@ const editTaskDetails = (e) => {
        
        // function to submit task edit form
         const submitTaskEdit = (e) => {
-            console.log(selectedTask)
             e.preventDefault();
             items.name = taskInputName.value;
             items.desc = taskInputDesc.value;
             items.date = taskInputDate.value;
             items = '';
-            console.log(items);
             taskEditModal.classList.remove('active');
             taskEditForm.removeEventListener('submit', submitTaskEdit);
             renderTasks();
@@ -196,4 +194,4 @@ const createTask = (task, desc, date, posted) => {
 }
 
 
-export { renderTasks, listListeners }
+export { renderTasks, listListeners, submitForm, editTaskDetails }

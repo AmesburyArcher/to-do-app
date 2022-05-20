@@ -120,15 +120,15 @@
                             </svg>
                     </span>
                 </div>
-                <form id="add-task">
+                <form id="add-task" novalidate>
                     <label for="task">Task: (required)</label>
-                    <input type="text" id="task" name="task" required>
+                    <input type="text" id="task" name="task" maxlength="20" required>
 
                     <label for="date">Complete By: (optional)</label>
                     <input type="date" id="date" name="date">
 
                     <label for="description">Task Description: (optional)</label>
-                    <textarea id="description" name="description"></textarea>
+                    <textarea id="description" name="description" maxlength="50"></textarea>
 
                     <button class="add-task-btn">Submit Task</button>
                 </form>

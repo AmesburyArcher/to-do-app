@@ -2,6 +2,7 @@ import { createDirListener, saveAndRenderList} from "./directory-creator";
 import { toggleTheme } from "./toggleTheme";
 import { renderTasks, listListeners } from "./list-creator"
 import { displayDate } from "./date";
+import { validateDateInput, validateDateInputEdit, validateTaskForm, validateTaskFormEdit } from "./validation";
 
 function createHTMLElement(type, id, classes, content) {
     const element = document.createElement(type);
@@ -26,6 +27,10 @@ const onLoad = () => {
     createDirListener();
     listListeners(); 
     displayDate();
+    validateDateInput();
+    validateTaskForm();
+    validateDateInputEdit();
+    validateTaskFormEdit();
     time;
 }
 
