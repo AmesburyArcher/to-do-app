@@ -350,7 +350,7 @@ body.active {
     display: block;
 }
 
-#list-modal {
+#list-modal, .list-modal-edit {
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -367,7 +367,8 @@ body.active {
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
 
-#list-modal .list-modal-title {
+#list-modal .list-modal-title,
+.list-modal-edit .list-modal-title {
     align-self: center;
     font-weight: 700;
 }
@@ -388,19 +389,23 @@ body.active {
 }
 
 #list-modal input,
-#list-modal textarea {
+#list-modal textarea,
+.list-modal-edit input,
+.list-modal-edit textarea {
     background-color: var(--white);
     border: none;
     border-radius: 5px;
     padding: 0.15rem;
 }
 
-#list-modal textarea {
+#list-modal textarea,
+.list-modal-edit textarea {
     resize: none;
     height: 100px;
 }
 
-#list-modal button {
+#list-modal button,
+.list-modal-edit button {
     align-self: center;
     margin-top: 0.5rem;
     border: none;
@@ -501,7 +506,7 @@ body.active {
     visibility: visible;
 }
 
- .task input[type=checkbox]:checked::after {
+.task input[type=checkbox]:checked::after {
     content: "\2714";
     color: var(--white-text);
     padding: 0 0.15rem;
@@ -524,13 +529,13 @@ body.active {
     display: block;
 }
 
-#list-modal #add-task-edit {
+.list-modal-edit #add-task-edit {
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
 }
 
-#list-modal .close-task-modal-edit {
+.list-modal-edit .close-task-modal-edit {
     position: absolute;
     top: 0;
     right: 0;
